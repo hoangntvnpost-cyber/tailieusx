@@ -210,7 +210,24 @@
             gap: 6px;
             justify-content: center;
         }
+.btn-add {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
 
+.btn-add:hover {
+    background-color: var(--primary-blue-dark);
+}
         /* =========================================
            CSS RESPONSIVE CHO ĐIỆN THOẠI BẮT ĐẦU TỪ ĐÂY
            ========================================= */
@@ -326,6 +343,9 @@
                 <i class="fa-solid fa-search"></i>
                 <input type="text" placeholder="Tìm kiếm mã hàng...">
             </div>
+            <button id="btnAdd" class="btn-add">
+        <i class="fa-solid fa-plus"></i> Thêm mã mới
+    </button>
         </div>
     </header>
     <div class="table-container">
