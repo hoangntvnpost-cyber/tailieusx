@@ -45,7 +45,6 @@
             justify-content: space-between;
             align-items: center;
             border-left: 6px solid var(--primary-blue);
-            /* Điểm nhấn màu sắc */
         }
 
         .header-left {
@@ -68,14 +67,6 @@
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 0.5px;
-        }
-
-        .header-title span {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 500;
-            display: block;
-            margin-top: 4px;
         }
 
         .header-right {
@@ -113,41 +104,6 @@
             background-color: #fff;
             box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
             width: 260px;
-            /* Mở rộng khi click */
-        }
-
-        /* Hồ sơ người dùng */
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            padding-left: 24px;
-            border-left: 1px solid var(--border-color);
-        }
-
-        .user-profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--border-color);
-        }
-
-        .user-profile .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .user-profile .user-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .user-profile .user-role {
-            font-size: 12px;
-            color: var(--text-muted);
         }
 
         /* Card chứa bảng */
@@ -201,7 +157,6 @@
             border-bottom: none;
         }
 
-        /* Các thành phần trong bảng */
         .style-code {
             font-size: 16px;
             font-weight: bold;
@@ -224,7 +179,6 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
-        /* Nút tài liệu chung */
         .doc-btn {
             display: inline-flex;
             align-items: center;
@@ -237,7 +191,6 @@
             transition: all 0.2s;
         }
 
-        /* Giao diện nút file chung chung (màu xám nhạt, chữ đậm) */
         .btn-file {
             background-color: #f1f3f5;
             color: #495057;
@@ -247,16 +200,112 @@
         .btn-file:hover {
             background-color: #e2e6ea;
             color: var(--primary-blue);
-            /* Đổi màu chữ sang xanh khi đưa chuột vào */
             border-color: #adb5bd;
             transform: translateY(-1px);
         }
 
-        /* Cột hành động đa dạng */
         .action-group {
             display: flex;
             gap: 6px;
             justify-content: center;
+        }
+
+        /* =========================================
+           CSS RESPONSIVE CHO ĐIỆN THOẠI BẮT ĐẦU TỪ ĐÂY
+           ========================================= */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+                /* Giảm khoảng cách viền trên mobile */
+            }
+
+            /* Điều chỉnh Header */
+            .app-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .header-right,
+            .search-box,
+            .search-box input {
+                width: 100%;
+                /* Ô tìm kiếm full width */
+            }
+
+            .search-box input:focus {
+                width: 100%;
+            }
+
+            .header-title h1 {
+                font-size: 18px;
+                /* Thu nhỏ chữ tiêu đề */
+            }
+
+            /* Điều chỉnh Bảng thành Card */
+            .table-container {
+                background: transparent;
+                box-shadow: none;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                /* Phá vỡ cấu trúc bảng truyền thống */
+            }
+
+            thead tr {
+                display: none;
+                /* Ẩn phần tiêu đề cột (th) trên mobile */
+            }
+
+            tbody tr {
+                background-color: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                margin-bottom: 15px;
+                padding: 10px 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            tbody td {
+                display: flex;
+                justify-content: space-between;
+                /* Đẩy nội dung sang 2 bên */
+                align-items: center;
+                border-bottom: 1px dashed var(--border-color);
+                padding: 10px 15px;
+                text-align: right;
+            }
+
+            tbody td:last-child {
+                border-bottom: none;
+            }
+
+            /* Lấy tên cột từ data-label HTML để hiển thị */
+            tbody td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--text-muted);
+                text-align: left;
+                padding-right: 15px;
+            }
+
+            /* Điều chỉnh hiển thị của action-group trên mobile */
+            .action-group {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+
+            .product-img {
+                width: 60px;
+                /* Thu nhỏ ảnh mặc định trên mobile */
+            }
         }
     </style>
 </head>
@@ -296,42 +345,43 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
-                    <td class="style-code">365679-AW26</td>
-                    <td>
+                    <td data-label="STT">1</td>
+                    <td data-label="Mã hàng" class="style-code">365679-AW26</td>
+                    <td data-label="Hình ảnh">
                         <img src="img/365679-AW26.jpg" alt="Hình ảnh sản phẩm" class="product-img">
                     </td>
-                    <td>
+                    <td data-label="Tài liệu sản xuất">
                         <a href="https://docs.google.com/document/d/17cLKbXwproPJ0Sv4diGGZDA9KdN_sETb/edit"
                             class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> TLSX_365679</a>
                     </td>
-                    <td>
+                    <td data-label="Góp ý mẫu">
                         <a href="https://docs.google.com/spreadsheets/d/1Gc268l2aeddZ5tJknI4FeKx6xIr82amH/edit?gid=706372959#gid=706372959"
                             class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> Góp ý</a>
                     </td>
-                    <td>
+                    <td data-label="Technical file">
                         <a href="https://drive.google.com/file/d/1GIbI9wjPYOX0gREMzipUDeHBqalP7_Cy/view"
                             class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> Tech file</a>
                     </td>
-                    <td>
+                    <td data-label="Techpack feedback">
                         <div class="action-group">
                             <a href="https://docs.google.com/spreadsheets/d/1pMiSWLKjyJzQVlw9dVCSUKGfzNbtmzl2/edit?gid=152087337#gid=152087337"
                                 class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> Feedback</a>
                         </div>
                     </td>
-                    <td>
+                    <td data-label="Quy trình">
                         <a href="https://docs.google.com/spreadsheets/d/1QlAHOSA4KqCh0njxgVChr4VUc12l-fBK/edit?gid=1020701676#gid=1020701676"
                             class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> Quy trình</a>
                     </td>
-                    <td>
+                    <td data-label="Bảng chỉ">
                         <a href="https://docs.google.com/spreadsheets/d/1133i63-WZz04w7EiruF_AOTZ_eq6INJP/edit?gid=67951797#gid=67951797"
                             class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> Bảng chỉ</a>
                     </td>
-                    <td>
+                    <td data-label="Đóng gói">
                         <a href="https://drive.google.com/file/d/1eLLXBE9ds_g6irgZ4CMgUtSJyvIsvfHV/view"
                             class="doc-btn btn-file"><i class="fa-solid fa-paperclip"></i> Đóng gói</a>
                     </td>
                 </tr>
+
             </tbody>
         </table>
     </div>
